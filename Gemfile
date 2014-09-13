@@ -7,6 +7,7 @@ gem 'fastcase', git: "https://github.com/TalkingQuickly/fastcase.git"
 gem 'sinatra-contrib'
 gem "activerecord"
 gem "sinatra-activerecord"
+gem 'pry'
 
 group :development do
   gem 'sqlite3'
