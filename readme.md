@@ -1,6 +1,6 @@
 # Permafrast
 
-A human-centric approach to the Fastcase Public API. 
+A human-centric approach to the Fastcase Public API, originally built by [@vdavez](https://twitter.com/vdavez) with substantial contributions of [@TalkingQuickly](https://twitter.com/TalkingQuickly) and [@adelevie](https://twitter.com/adelevie).
 
 # What is this?
 
@@ -16,7 +16,7 @@ The permafrast API responds to both html and json requests. E.g:
 * `/:volume/:reporter/:starting_page.json` for json
 * `/:volume/:reporter/:starting_page/redirect` will automatically redirect the user to the reported opinion url
 
-h`. The `html` response gives a clickable link with the full citation for the opinion. The `json` response gives a json object associated with the opinion. 
+The `html` response gives a clickable link with the full citation for the opinion. The `json` response gives a json object associated with the opinion. 
 
 For both endpoints, you must pass three parameters associated with a reported judicial opinion:
 
@@ -24,7 +24,11 @@ For both endpoints, you must pass three parameters associated with a reported ju
 2. The reporter abbreviation (e.g., `U.S.`)
 3. The starting page of the opinion (an integer)
 
-So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <http://permafrast.herokuapp.com/600/F.3d/642>.
+So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <https://permafrast.herokuapp.com/600/F.3d/642>.
+
+# Source Code and Contributions
+
+The source code for permafrast is available at <https://github.com/vzvenyach/permafrast>. Please feel free to submit PRs or [open issues](https://github.com/vzvenyach/permafrast/issues).
 
 # Development
 
