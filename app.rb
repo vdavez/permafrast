@@ -7,6 +7,12 @@ require 'json'
 require 'fastcase'
 require 'sinatra/respond_with'
 require "sinatra/activerecord"
+require 'pry'
+
+if settings.development?
+  require 'dotenv'
+  Dotenv.load
+end
 
 # Autoload everything in models and use cases folder
 ["models", "use_cases"].each do |target|
@@ -15,9 +21,6 @@ require "sinatra/activerecord"
     require file
   end
 end
-
-require 'dotenv'
-Dotenv.load
 
 before(/.*/) do
   if request.url.match(/.json$/)
@@ -31,6 +34,7 @@ get '/' do
 end
 
 get '/:vol/:reporter/:page' do
+  binding.pry
   data = Cacher.new(
     volume: params["vol"],
     reporter: params["reporter"],
