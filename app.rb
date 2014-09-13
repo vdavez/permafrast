@@ -1,10 +1,20 @@
 #!/usr/bin/env ruby 
 # app.rb
 require 'sinatra'
+require './environments'
 require 'curb'
 require 'json'
 require 'fastcase'
 require 'sinatra/respond_with'
+require "sinatra/activerecord"
+
+# Autoload everything in models and use cases folder
+["models", "use_cases"].each do |target|
+  Dir[File.dirname(__FILE__) + "/#{target}/**/*.rb"].each do |file| 
+    puts "including #{file}"
+    require file
+  end
+end
 
 before(/.*/) do
   if request.url.match(/.json$/)
