@@ -10,6 +10,8 @@ gem 'sinatra-activerecord'
 gem 'redcarpet'
 gem 'github-markup'
 gem 'pry'
+gem 'travis-lint'
+gem 'travis'
 
 group :development do
    gem 'sqlite3'
