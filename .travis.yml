@@ -1,6 +1,4 @@
 language: ruby
-rvm:
-- 2.1.2
 deploy:
   api_key:
     secure: WnmyJFEp6pGScBsI4CxBU8/giFJCiJZhNQn5LSkaG9zH+dnTsI9+iDkwJXPuXCGAyyPqxdLdkYadOrGnzoNEzLrvU2wGlTKsVRBp2b8evvyi+xtZTTfsTXLiqW/EtgJCHHPQS9sU1nLQ2lqjD3ZoDTki8/nE85JUaXvo28lRCLQ=
