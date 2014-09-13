@@ -1,6 +1,6 @@
 # Permafrast
 
-A human-centric approach to the Fastcase Public API. 
+A human-centric approach to the Fastcase Public API, originally built by [@vdavez](https://twitter.com/vdavez) with substantial contributions of [@TalkingQuickly](https://twitter.com/TalkingQuickly) and [@adelevie](https://twitter.com/adelevie).
 
 # What is this?
 
@@ -25,6 +25,10 @@ For both endpoints, you must pass three parameters associated with a reported ju
 3. The starting page of the opinion (an integer)
 
 So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <https://permafrast.herokuapp.com/600/F.3d/642>.
+
+# Source Code and Contributions
+
+The source code for permafrast is available at <https://github.com/vzvenyach/permafrast>. Please feel free to submit PRs or [open issues](https://github.com/vzvenyach/permafrast/issues).
 
 # Development
 
