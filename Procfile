@@ -1,1 +1,1 @@
-web: rerun 'ruby app.rb'
+web: bundle exec rerun ruby app.rb
