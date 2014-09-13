@@ -16,8 +16,8 @@ require "sinatra/activerecord"
   end
 end
 
-require 'dotenv'
-Dotenv.load
+#require 'dotenv'
+#Dotenv.load
 
 before(/.*/) do
   if request.url.match(/.json$/)
