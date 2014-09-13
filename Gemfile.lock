@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/TalkingQuickly/fastcase.git
+  revision: 4d88602bb9ed20548c774d48fcbdbf995b2c7b77
+  specs:
+    fastcase (0.0.1)
+      curb
+      json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -6,6 +14,7 @@ GEM
     curb (0.8.6)
     ffi (1.9.3)
     hitimes (1.2.2)
+    json (1.8.1)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -31,5 +40,6 @@ PLATFORMS
 
 DEPENDENCIES
   curb
+  fastcase!
   rerun
   sinatra
