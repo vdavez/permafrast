@@ -30,7 +30,7 @@ end
 
 get '/' do
   file = 'readme.md'
-  GitHub::Markup.render(file, File.read(file))
+  @homepage ||= GitHub::Markup.render(file, File.read(file))
 end
 
 get '/:vol/:reporter/:page' do
