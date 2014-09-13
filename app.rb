@@ -3,24 +3,31 @@
 require 'sinatra'
 require 'curb'
 require 'json'
+require 'fastcase'
 
 get '/' do
   'Hello Permafrast!'
 end
 
 get '/json/:vol/:reporter/:page' do
-  d = {"Context"=>{"ServiceAccountContext"=>ENV["FASTCASE_API_TOKEN"]}, "Request"=>{"Citations"=> [{"Volume"=>params["vol"].to_i, "Reporter"=>params["reporter"], "Page"=>params["page"].to_i}]}}
-  res = Curl::Easy.http_post("https://services.fastcase.com/REST/ResearchServices.svc/GetPublicLink", d.to_json) do |curl|
-    curl.headers["Content-Type"] = "application/json"
-  end
-  res.body_str.to_json
+  ::Fastcase::Client.new(
+    ENV["FASTCASE_API_TOKEN"]
+  ).public_link(
+    volume: params["vol"],
+    reporter: params["reporter"],
+    page: params["page"]
+  ).to_json
 end
 
 get '/info/:vol/:reporter/:page' do
-  d = {"Context"=>{"ServiceAccountContext"=>ENV["FASTCASE_API_TOKEN"]}, "Request"=>{"Citations"=> [{"Volume"=>params["vol"].to_i, "Reporter"=>params["reporter"], "Page"=>params["page"].to_i}]}}
-  res = Curl::Easy.http_post("https://services.fastcase.com/REST/ResearchServices.svc/GetPublicLink", d.to_json) do |curl|
-    curl.headers["Content-Type"] = "application/json"
-  end
-  out = JSON.parse(res.body_str)
+  out = JSON.parse(
+    ::Fastcase::Client.new(
+      ENV["FASTCASE_API_TOKEN"]
+    ).public_link(
+      volume: params["vol"],
+      reporter: params["reporter"],
+      page: params["page"]
+    )
+  )
   erb :app, :locals => {"out"=>out}
 end
