@@ -9,6 +9,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'redcarpet'
 gem 'github-markup'
+gem 'pry'
 
 group :development do
    gem 'sqlite3'
@@ -16,5 +17,5 @@ group :development do
 end
 
 group :production do
-   gem 'pg'
+  gem 'pg'
 end

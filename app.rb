@@ -9,6 +9,12 @@ require 'sinatra/respond_with'
 require 'sinatra/activerecord'
 require 'redcarpet'
 require 'github/markup'
+require 'pry'
+
+if settings.development?
+  require 'dotenv'
+  Dotenv.load
+end
 
 # Autoload everything in models and use cases folder
 ["models", "use_cases"].each do |target|
@@ -41,6 +47,7 @@ get '/' do
 end
 
 get '/:vol/:reporter/:page' do
+  binding.pry
   data = Cacher.new(
     volume: params["vol"],
     reporter: params["reporter"],
