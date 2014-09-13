@@ -28,16 +28,35 @@ get '/' do
 end
 
 get '/:vol/:reporter/:page' do
-  data = ::Fastcase::Client.new(
-    ENV["FASTCASE_API_TOKEN"]
-  ).public_link(
+  data = Cacher.new(
     volume: params["vol"],
     reporter: params["reporter"],
     page: params["page"]
-  )
+  ).cache!
 
   respond_to do |f|
-    f.json {data}
-    f.html { erb :app, :locals => {"out"=>JSON.parse(data)} }
+    f.json do
+      data.to_json(only:[
+        :volume,
+        :reporter,
+        :page,
+        :url,
+        :full_citation
+      ])
+    end
+
+    f.html do
+      erb :app, :locals => {"out"=>data}
+    end
   end
+end
+
+get '/:vol/:reporter/:page/redirect' do
+  data = Cacher.new(
+    volume: params["vol"],
+    reporter: params["reporter"],
+    page: params["page"]
+  ).cache!
+
+  redirect data.url
 end

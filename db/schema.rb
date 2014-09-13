@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913165820) do
+ActiveRecord::Schema.define(version: 20140913180047) do
 
-  create_table "call_cache", force: true do |t|
+  create_table "call_caches", force: true do |t|
     t.string   "volume"
     t.string   "reporter"
     t.string   "page"
     t.text     "fetched_page"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
+    t.string   "full_citation"
   end
 
 end

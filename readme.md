@@ -14,6 +14,7 @@ The permafrast API responds to both html and json requests. E.g:
 
 * `/:volume/:reporter/:starting_page` for html
 * `/:volume/:reporter/:starting_page.json` for json
+* `/:volume/:reporter/:starting_page/redirect` will automatically redirect the user to the reported opinion url
 
 h`. The `html` response gives a clickable link with the full citation for the opinion. The `json` response gives a json object associated with the opinion. 
 
