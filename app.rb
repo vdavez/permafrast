@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby 
 # app.rb
 require 'sinatra'
+require 'sinatra/base'
 require './environments'
 require 'curb'
 require 'json'
 require 'fastcase'
-require 'sinatra/respond_with'
 require 'sinatra/activerecord'
+require 'sinatra/contrib/all'
 require 'redcarpet'
 require 'github/markup'
 require 'pry'
@@ -38,42 +39,48 @@ before(/.*/) do
   end
 end
 
-get '/' do
-  file = 'readme.md'
-  @homepage ||= GitHub::Markup.render(file, File.read(file))
-end
+class App < Sinatra::Base
+  register Sinatra::Contrib
+  register Sinatra::ActiveRecordExtension
 
-get '/:vol/:reporter/:page' do
-  binding.pry
-  data = Cacher.new(
-    volume: params["vol"],
-    reporter: params["reporter"],
-    page: params["page"]
-  ).cache!
+  get '/' do
+    file = 'readme.md'
+    @homepage ||= GitHub::Markup.render(file, File.read(file))
+  end
 
-  respond_to do |f|
-    f.json do
-      [data].to_json(only:[
-        :volume,
-        :reporter,
-        :page,
-        :url,
-        :full_citation
-      ])
-    end
+  get '/:vol/:reporter/:page' do
+    data = Cacher.new(
+      volume: params["vol"],
+      reporter: params["reporter"],
+      page: params["page"]
+    ).cache!
 
-    f.html do
-      erb :app, :locals => {"out"=>data}
+    respond_to do |f|
+      f.json do
+        [data].to_json(only:[
+          :volume,
+          :reporter,
+          :page,
+          :url,
+          :full_citation
+        ])
+      end
+
+      f.html do
+        erb :app, :locals => {"out"=>data}
+      end
     end
   end
-end
 
-get '/:vol/:reporter/:page/redirect' do
-  data = Cacher.new(
-    volume: params["vol"],
-    reporter: params["reporter"],
-    page: params["page"]
-  ).cache!
+  get '/:vol/:reporter/:page/redirect' do
+    data = Cacher.new(
+      volume: params["vol"],
+      reporter: params["reporter"],
+      page: params["page"]
+    ).cache!
 
-  redirect data.url
+    redirect data.url
+  end
+
+  run! if app_file == $0
 end
