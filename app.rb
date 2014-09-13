@@ -16,7 +16,7 @@ get '/json/:vol/:reporter/:page' do
     volume: params["vol"],
     reporter: params["reporter"],
     page: params["page"]
-  ).to_json
+  )
 end
 
 get '/info/:vol/:reporter/:page' do
