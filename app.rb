@@ -9,6 +9,13 @@ require 'sinatra/respond_with'
 require 'dotenv'
 Dotenv.load
 
+configure :production do
+  host = ENV['HOST'] || 'permafrast.herokuapp.com'
+  
+  set :host, host
+  set :force_ssl, true
+end
+
 before(/.*/) do
   if request.url.match(/.json$/)
     request.accept.unshift('application/json')
