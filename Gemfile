@@ -16,12 +16,13 @@ gem 'rake'
 
 group :test, :development do
   gem 'rspec'
-  gem 'nokogiri'
 end
  
 group :test do
   gem 'rack-test'
 end
+
+gem 'nokogiri'
 
 group :development do
    gem 'sqlite3'
