@@ -26,5 +26,9 @@ For both endpoints, you must pass three parameters associated with a reported ju
 
 So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <http://permafrast.herokuapp.com/600/F.3d/642>.
 
+# Development
+
+In development SQLite is used, use `bundle exec rake db:create && db:migrate` to create it.
+
 # License
 MIT
