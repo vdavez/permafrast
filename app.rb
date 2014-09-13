@@ -18,8 +18,8 @@ require 'github/markup'
   end
 end
 
-#require 'dotenv'
-#Dotenv.load
+require 'dotenv'
+Dotenv.load
 
 configure :production do
   host = ENV['HOST'] || 'permafrast.herokuapp.com'
