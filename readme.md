@@ -10,7 +10,12 @@ The API requires a user to set headers and pass a data object. This is good, but
 
 # Usage
 
-The permafrast API has two exposed endpoints: `/info` and `/json`. The `info` endpoint gives a clickable link with the full citation for the opinion. The `json` endpoint gives a json object associated with the opinion. 
+The permafrast API responds to both html and json requests. E.g:
+
+* `/:volume/:reporter/:starting_page` for html
+* `/:volume/:reporter/:starting_page.json` for json
+
+h`. The `html` response gives a clickable link with the full citation for the opinion. The `json` response gives a json object associated with the opinion. 
 
 For both endpoints, you must pass three parameters associated with a reported judicial opinion:
 
@@ -18,7 +23,7 @@ For both endpoints, you must pass three parameters associated with a reported ju
 2. The reporter abbreviation (e.g., `U.S.`)
 3. The starting page of the opinion (an integer)
 
-So, `http://permafrast.herokuapp.com/info/:volume/:reporter/:starting_page`. For example, see <http://permafrast.herokuapp.com/info/600/F.3d/642>.
+So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <http://permafrast.herokuapp.com/600/F.3d/642>.
 
 # License
 MIT
