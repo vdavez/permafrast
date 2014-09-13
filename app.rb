@@ -16,6 +16,9 @@ require "sinatra/activerecord"
   end
 end
 
+require 'dotenv'
+Dotenv.load
+
 before(/.*/) do
   if request.url.match(/.json$/)
     request.accept.unshift('application/json')
