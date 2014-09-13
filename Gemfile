@@ -9,6 +9,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'redcarpet'
 gem 'github-markup'
+gem 'nokogiri'
 
 group :development do
    gem 'sqlite3'

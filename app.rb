@@ -54,7 +54,8 @@ get '/:vol/:reporter/:page' do
         :reporter,
         :page,
         :url,
-        :full_citation
+        :full_citation,
+        :fetched_page
       ])
     end
 
