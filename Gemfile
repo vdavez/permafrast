@@ -5,13 +5,14 @@ gem 'curb'
 gem 'rerun'
 gem 'fastcase', git: "https://github.com/TalkingQuickly/fastcase.git"
 gem 'sinatra-contrib'
-#gem 'dotenv', group: :development
-#gem 'dotenv'
-gem "activerecord"
-gem "sinatra-activerecord"
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'redcarpet'
+gem 'github-markup'
 
 group :development do
    gem 'sqlite3'
+   gem 'dotenv'
 end
 
 group :production do
