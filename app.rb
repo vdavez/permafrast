@@ -6,7 +6,9 @@ require 'curb'
 require 'json'
 require 'fastcase'
 require 'sinatra/respond_with'
-require "sinatra/activerecord"
+require 'sinatra/activerecord'
+require 'redcarpet'
+require 'github/markup'
 require 'pry'
 
 if settings.development?
@@ -22,6 +24,16 @@ end
   end
 end
 
+require 'dotenv'
+Dotenv.load
+
+configure :production do
+  host = ENV['HOST'] || 'permafrast.herokuapp.com'
+  
+  set :host, host
+  set :force_ssl, true
+end
+
 before(/.*/) do
   if request.url.match(/.json$/)
     request.accept.unshift('application/json')
@@ -30,7 +42,8 @@ before(/.*/) do
 end
 
 get '/' do
-  'Hello Permafrast!'
+  file = 'readme.md'
+  @homepage ||= GitHub::Markup.render(file, File.read(file))
 end
 
 get '/:vol/:reporter/:page' do
