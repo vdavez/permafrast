@@ -26,5 +26,15 @@ For both endpoints, you must pass three parameters associated with a reported ju
 
 So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <http://permafrast.herokuapp.com/600/F.3d/642>.
 
+# Installation
+
+You can easily run your own instance of Permafrast.
+
+1. Clone the repo.
+2. `cp .env.example .env`.
+3. Add your Fastcase API key to `.env`. If you don't have one, tweet to [Josh Auriemma](https://twitter.com/legalgeekery).
+4. Run `bundle`.
+5. Run the server locally with `bundle exec ruby app.rb`.
+
 # License
 MIT

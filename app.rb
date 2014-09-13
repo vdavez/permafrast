@@ -6,6 +6,9 @@ require 'json'
 require 'fastcase'
 require 'sinatra/respond_with'
 
+require 'dotenv'
+Dotenv.load
+
 before(/.*/) do
   if request.url.match(/.json$/)
     request.accept.unshift('application/json')
