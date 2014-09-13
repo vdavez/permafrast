@@ -17,7 +17,7 @@ get '/' do
   'Hello Permafrast!'
 end
 
-get '/:vol/:reporter/:page' do
+get '/:vol/:reporter/:page/?' do
   data = ::Fastcase::Client.new(
     ENV["FASTCASE_API_TOKEN"]
   ).public_link(
