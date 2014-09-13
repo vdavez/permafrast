@@ -24,9 +24,6 @@ end
   end
 end
 
-require 'dotenv'
-Dotenv.load
-
 configure :production do
   host = ENV['HOST'] || 'permafrast.herokuapp.com'
   
