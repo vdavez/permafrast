@@ -36,7 +36,7 @@ get '/:vol/:reporter/:page' do
 
   respond_to do |f|
     f.json do
-      data.to_json(only:[
+      [data].to_json(only:[
         :volume,
         :reporter,
         :page,
