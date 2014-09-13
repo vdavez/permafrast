@@ -6,3 +6,14 @@ gem 'rerun'
 gem 'fastcase', git: "https://github.com/TalkingQuickly/fastcase.git"
 gem 'sinatra-contrib'
 gem 'dotenv', group: :development
+gem 'dotenv'
+gem "activerecord"
+gem "sinatra-activerecord"
+
+group :development do
+   gem 'sqlite3'
+end
+
+group :production do
+   gem 'pg'
+end
