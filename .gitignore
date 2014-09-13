@@ -16,3 +16,4 @@
 /lib/bundler/man/
 
 .env
+development.sqlite3
