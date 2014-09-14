@@ -16,4 +16,5 @@
 /lib/bundler/man/
 
 .env
-development.sqlite3
+*.sqlite3
+/vendor
