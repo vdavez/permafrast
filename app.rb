@@ -47,6 +47,22 @@ class App < Sinatra::Base
     file = 'readme.md'
     @homepage ||= GitHub::Markup.render(file, File.read(file))
   end
+  
+  get '/:vol/:reporter/:page.json' do
+    data = Cacher.new(
+      volume: params["vol"],
+      reporter: params["reporter"],
+      page: params["page"]
+    ).cache!
+    
+    [data].to_json(only:[
+      :volume,
+      :reporter,
+      :page,
+      :url,
+      :full_citation
+    ])
+  end
 
   get '/:vol/:reporter/:page' do
     data = Cacher.new(
@@ -55,21 +71,7 @@ class App < Sinatra::Base
       page: params["page"]
     ).cache!
 
-    respond_to do |f|
-      f.json do
-        [data].to_json(only:[
-          :volume,
-          :reporter,
-          :page,
-          :url,
-          :full_citation
-        ])
-      end
-
-      f.html do
-        erb :app, :locals => {"out"=>data}
-      end
-    end
+    erb :app, :locals => {"out"=>data}
   end
 
   get '/:vol/:reporter/:page/redirect' do
