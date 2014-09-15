@@ -14,6 +14,7 @@ module SpecConstants
   PAGE          = 642
   URL           = "https://apps.fastcase.com/Research/Public/ExViewer.aspx?LTID=%2fGLQLe%2fDaGym1PLr4VyFrNW1GRW%2fFszkp5OJNGHvwRPnb22Q5oSdo7jrjk8wbX8Q"
   FULL_CITATION = "Comcast Corp. v. Fed. Commc'ns Comm'n, 600 F.3d 642 (D.C. Cir., 2010)"
+  FETCHED_PAGE  = "Sample Page Content"
 end
 
 describe 'The HelloWorld App', type: :feature do
@@ -27,6 +28,7 @@ describe 'The HelloWorld App', type: :feature do
     cc.page          = SpecConstants::PAGE
     cc.url           = SpecConstants::URL
     cc.full_citation = SpecConstants::FULL_CITATION
+    cc.fetched_page  = SpecConstants::FETCHED_PAGE
     
     fake_response = cc
     cacher_instance = {}
@@ -60,7 +62,11 @@ describe 'The HelloWorld App', type: :feature do
     expect(last_response.status).to(eq(200))
     
     page = Nokogiri::HTML(last_response.body)
-    a_tag = page.at_css('body > a')
+    a_tag = page.at_css('body > a')    
+    fetched_page_div = page.at_css('#fetched_page')
+    
+    # test fetched page content
+    expect(fetched_page_div.text.strip).to(eq(SpecConstants::FETCHED_PAGE))
     
     # test link text
     expect(a_tag.text).to(eq(SpecConstants::FULL_CITATION))
@@ -82,6 +88,27 @@ describe 'The HelloWorld App', type: :feature do
       "page"=>SpecConstants::PAGE, 
       "url"=>SpecConstants::URL, 
       "full_citation"=>SpecConstants::FULL_CITATION
+    }
+    
+    # test the json response
+    expect(json).to(include(expected))
+  end
+  
+  it 'gets JSON with full text' do
+    url = "#{SpecConstants::VOLUME}/#{SpecConstants::REPORTER}/#{SpecConstants::PAGE}.json?fulltext=true"
+    get url, nil, {'HTTP_ACCEPT' => "application/json"}
+    
+    # test http status code
+    expect(last_response.status).to(eq(200))
+        
+    json = JSON.parse(last_response.body)
+    expected = {
+      "volume"=>SpecConstants::VOLUME, 
+      "reporter"=>SpecConstants::REPORTER, 
+      "page"=>SpecConstants::PAGE, 
+      "url"=>SpecConstants::URL, 
+      "full_citation"=>SpecConstants::FULL_CITATION,
+      "fetched_page"=>SpecConstants::FETCHED_PAGE
     }
     
     # test the json response
