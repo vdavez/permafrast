@@ -49,6 +49,8 @@ class App < Sinatra::Base
   end
   
   get '/:vol/:reporter/:page.json' do
+    content_type :json
+
     data = Cacher.new(
       volume: params["vol"],
       reporter: params["reporter"],
