@@ -26,6 +26,10 @@ For both endpoints, you must pass three parameters associated with a reported ju
 
 So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <https://permafrast.herokuapp.com/600/F.3d/642> or <https://permafrast.herokuapp.com/600/F.3d/642.json>.
 
+## Full text
+
+By default, HTML routes will display the full text of the citation. For JSON routes, you can add `?fulltext=true` to the URL. Example https://permafrast.herokuapp.com/600/F.3d/642.json?fulltext=true.
+
 # Source Code and Contributions
 
 [![Build Status](https://travis-ci.org/vzvenyach/permafrast.svg?branch=master)](https://travis-ci.org/vzvenyach/permafrast)
