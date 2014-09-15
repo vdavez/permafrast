@@ -44,7 +44,8 @@ You can easily run your own instance of Permafrast.
 2. `cp .env.example .env`.
 3. Add your Fastcase API key to `.env`. If you don't have one, tweet to [Josh Auriemma](https://twitter.com/legalgeekery).
 4. Run `bundle`.
-5. Run the server locally with `bundle exec ruby app.rb`.
+5. Run the server locally with `bundle exec rackup -p 4567`.
+6. Run tests with `bundle exec rspec`
 
 # License
 MIT

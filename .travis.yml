@@ -1,6 +1,13 @@
 language: ruby
+
+rvm:
+  - "2.1.2"
+
+script:
+  - RACK_ENV=test bundle exec rake db:test:prepare
+  - RACK_ENV=test bundle exec rspec spec
+
 deploy:
   provider: heroku
   api_key:
     secure: WnmyJFEp6pGScBsI4CxBU8/giFJCiJZhNQn5LSkaG9zH+dnTsI9+iDkwJXPuXCGAyyPqxdLdkYadOrGnzoNEzLrvU2wGlTKsVRBp2b8evvyi+xtZTTfsTXLiqW/EtgJCHHPQS9sU1nLQ2lqjD3ZoDTki8/nE85JUaXvo28lRCLQ=
-script: bundle exec ruby app.rb

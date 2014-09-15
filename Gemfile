@@ -12,6 +12,16 @@ gem 'github-markup'
 gem 'pry'
 gem 'travis-lint'
 gem 'travis'
+gem 'rake'
+
+group :test, :development do
+  gem 'rspec'
+  gem 'nokogiri'
+end
+ 
+group :test do
+  gem 'rack-test'
+end
 
 group :development do
    gem 'sqlite3'
