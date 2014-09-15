@@ -50,13 +50,9 @@ class App < Sinatra::Base
   
   get '/:vol/:reporter/:page.json' do
     content_type :json
-
-    data = Cacher.new(
-      volume: params["vol"],
-      reporter: params["reporter"],
-      page: params["page"]
-    ).cache!
     
+    data = Cacher.cache_with_params!(params)
+
     keys = [
       :volume,
       :reporter,
@@ -75,22 +71,14 @@ class App < Sinatra::Base
   end
 
   get '/:vol/:reporter/:page' do
-    data = Cacher.new(
-      volume: params["vol"],
-      reporter: params["reporter"],
-      page: params["page"]
-    ).cache!
-
+    data = Cacher.cache_with_params!(params)
+  
     erb :app, :locals => {"out"=>data}
   end
 
   get '/:vol/:reporter/:page/redirect' do
-    data = Cacher.new(
-      volume: params["vol"],
-      reporter: params["reporter"],
-      page: params["page"]
-    ).cache!
-
+    data = Cacher.cache_with_params!(params)
+    
     redirect data.url
   end
 

@@ -8,6 +8,14 @@ class Cacher
   end
 
   attr_accessor :volume, :reporter, :page, :cached_entry
+  
+  def self.cache_with_params!(params)
+    Cacher.new(
+      volume: params["vol"],
+      reporter: params["reporter"],
+      page: params["page"]
+    ).cache!
+  end
 
   def cache!
     if cached_record && cached_record.fetched_page.present?
