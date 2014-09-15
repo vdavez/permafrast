@@ -28,6 +28,8 @@ So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For exam
 
 # Source Code and Contributions
 
+[![Build Status](https://travis-ci.org/vzvenyach/permafrast.svg?branch=master)](https://travis-ci.org/vzvenyach/permafrast)
+
 The source code for permafrast is available at <https://github.com/vzvenyach/permafrast>. Please feel free to submit PRs or [open issues](https://github.com/vzvenyach/permafrast/issues).
 
 # Development
