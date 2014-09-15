@@ -57,13 +57,21 @@ class App < Sinatra::Base
       page: params["page"]
     ).cache!
     
-    [data].to_json(only:[
+    keys = [
       :volume,
       :reporter,
       :page,
       :url,
       :full_citation
-    ])
+    ]
+    
+    if params["fulltext"]
+      if params["fulltext"] == "true"
+        keys << :fetched_page
+      end
+    end
+    
+    [data].to_json(only: keys)
   end
 
   get '/:vol/:reporter/:page' do

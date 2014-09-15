@@ -18,3 +18,4 @@
 .env
 *.sqlite3
 /vendor
+development.sqlite3
