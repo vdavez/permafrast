@@ -24,7 +24,7 @@ For both endpoints, you must pass three parameters associated with a reported ju
 2. The reporter abbreviation (e.g., `U.S.`)
 3. The starting page of the opinion (an integer)
 
-So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <https://permafrast.herokuapp.com/600/F.3d/642>.
+So, `http://permafrast.herokuapp.com/:volume/:reporter/:starting_page`. For example, see <https://permafrast.herokuapp.com/600/F.3d/642> or <https://permafrast.herokuapp.com/600/F.3d/642.json>.
 
 # Source Code and Contributions
 
