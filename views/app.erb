@@ -1,11 +1,19 @@
 <html>
-<head><title>Permafrast</title></head>
+<head>
+  <title>Permafrast</title>
+  <style type="text/css">
+    body { font-size:16px; }
+    .wrapper { max-width: 600px; margin:0 auto; }
+  </style>
+</head>
 <body>
-<h1>Permafrast</h1>
-<a href="<%= out.url %>"><%= out.full_citation %></a>
-<br/>
-<div id="fetched_page">
-<%= out.fetched_page %>
+<div class="wrapper">
+  <h1>Permafrast</h1>
+  <a href="<%= out.url %>"><%= out.full_citation %></a>
+  <br/>
+  <div id="fetched_page">
+  <%= out.fetched_page %>
+  </div>
 </div>
 </body>
 </html>

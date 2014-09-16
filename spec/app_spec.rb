@@ -62,7 +62,7 @@ describe 'The HelloWorld App', type: :feature do
     expect(last_response.status).to(eq(200))
     
     page = Nokogiri::HTML(last_response.body)
-    a_tag = page.at_css('body > a')    
+    a_tag = page.at_css('body > div > a')
     fetched_page_div = page.at_css('#fetched_page')
     
     # test fetched page content
