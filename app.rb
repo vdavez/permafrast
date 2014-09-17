@@ -45,7 +45,9 @@ class App < Sinatra::Base
 
   get '/' do
     file = 'readme.md'
-    @homepage ||= GitHub::Markup.render(file, File.read(file))
+    @readme_html ||= GitHub::Markup.render(file, File.read(file))
+    
+    erb :index, locals: {readme_html: @readme_html}
   end
   
   get '/:vol/:reporter/:page.json' do
@@ -81,7 +83,7 @@ class App < Sinatra::Base
       page: params["page"]
     ).cache!
 
-    erb :app, :locals => {"out"=>data}
+    erb :case, :locals => {"out"=>data}
   end
 
   get '/:vol/:reporter/:page/redirect' do
