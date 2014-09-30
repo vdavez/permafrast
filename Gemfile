@@ -16,6 +16,8 @@ gem 'rake'
 
 group :test, :development do
   gem 'rspec'
+  gem 'capybara'
+  gem 'capybara-webkit'
 end
  
 group :test do

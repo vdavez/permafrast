@@ -3,10 +3,13 @@ require 'rspec'
 require 'rack/test'
 require 'json'
 require 'nokogiri'
-
+require 'capybara/rspec'
 
 RSpec.configure do |config|
 end
+
+Capybara.app = App
+Capybara.javascript_driver = :webkit
 
 module SpecConstants
   VOLUME        = 600
@@ -14,10 +17,10 @@ module SpecConstants
   PAGE          = 642
   URL           = "https://apps.fastcase.com/Research/Public/ExViewer.aspx?LTID=%2fGLQLe%2fDaGym1PLr4VyFrNW1GRW%2fFszkp5OJNGHvwRPnb22Q5oSdo7jrjk8wbX8Q"
   FULL_CITATION = "Comcast Corp. v. Fed. Commc'ns Comm'n, 600 F.3d 642 (D.C. Cir., 2010)"
-  FETCHED_PAGE  = "Sample Page Content"
+  FETCHED_PAGE  = "Sample Page Content. This case cites to Am. Library Ass'n v. FCC, 406 F.3d 689, 692 (D.C.Cir. 2005)."
 end
 
-describe 'The HelloWorld App', type: :feature do
+describe 'The App', type: :feature do
   include Rack::Test::Methods
   
   before do
@@ -62,7 +65,7 @@ describe 'The HelloWorld App', type: :feature do
     expect(last_response.status).to(eq(200))
     
     page = Nokogiri::HTML(last_response.body)
-    a_tag = page.at_css('body > div > a')
+    a_tag = page.at_css('a#full_citation')
     fetched_page_div = page.at_css('#fetched_page')
     
     # test fetched page content
@@ -113,5 +116,24 @@ describe 'The HelloWorld App', type: :feature do
     
     # test the json response
     expect(json).to(include(expected))
+  end
+  
+  it 'turns legal citations into links' do
+    pending "This test fails when it should not."
+    
+    url = "#{SpecConstants::VOLUME}/#{SpecConstants::REPORTER}/#{SpecConstants::PAGE}"
+    visit url
+        
+    # test http status code
+    expect(page.status_code).to(eq(200))
+    
+    # this did not solve the problem:
+    # sleep(5)
+            
+    parsed_page = Nokogiri::HTML(page.html)
+    
+    citation_links = parsed_page.css('a.citation')
+        
+    expect(citation_links.length).to_not(eq(0))
   end
 end

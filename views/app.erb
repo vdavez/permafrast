@@ -6,15 +6,17 @@
     body { font-size:16px; }
     .wrapper { max-width: 600px; margin:0 auto; }
   </style>
+  <script src="/javascripts/citation.min.js"></script>
+  <script src="/javascripts/linker.js"></script>
 </head>
 <body>
 <div class="wrapper">
   <h1>Permafrast</h1>
-  <a href="<%= out.url %>"><%= out.full_citation %></a>
+  <a id="full_citation" href="<%= out.url %>"><%= out.full_citation %></a>
   <br/>
   <div id="fetched_page">
   <%= out.fetched_page %>
-  </div>
+</div>
 </div>
 </body>
 </html>
