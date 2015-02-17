@@ -4,8 +4,10 @@ require 'rack/test'
 require 'json'
 require 'nokogiri'
 require 'capybara/rspec'
+require 'capybara-webkit'
 
 RSpec.configure do |config|
+  config.include Capybara::DSL
 end
 
 Capybara.app = App
@@ -20,7 +22,7 @@ module SpecConstants
   FETCHED_PAGE  = "Sample Page Content. This case cites to Am. Library Ass'n v. FCC, 406 F.3d 689, 692 (D.C.Cir. 2005)."
 end
 
-describe 'The App', type: :feature do
+describe 'The App', type: :feature, :js => true do
   include Rack::Test::Methods
   
   before do
@@ -119,11 +121,11 @@ describe 'The App', type: :feature do
   end
   
   it 'turns legal citations into links' do
-    pending "This test fails when it should not."
     
-    url = "#{SpecConstants::VOLUME}/#{SpecConstants::REPORTER}/#{SpecConstants::PAGE}"
+    url = "/#{SpecConstants::VOLUME}/#{SpecConstants::REPORTER}/#{SpecConstants::PAGE}"
     visit url
-        
+
+
     # test http status code
     expect(page.status_code).to(eq(200))
     
