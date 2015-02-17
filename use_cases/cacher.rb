@@ -7,7 +7,7 @@ class Cacher
     @page = options[:page]
   end
 
-  attr_accessor :volume, :reporter, :page, :cached_entry
+  attr_accessor :volume, :reporter, :page, :cached_record, :get_record, :cached_entry
 
   def cache!
     if cached_record && cached_record.fetched_page.present?
