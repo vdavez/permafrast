@@ -125,12 +125,8 @@ describe 'The App', type: :feature, :js => true do
     url = "/#{SpecConstants::VOLUME}/#{SpecConstants::REPORTER}/#{SpecConstants::PAGE}"
     visit url
 
-
     # test http status code
     expect(page.status_code).to(eq(200))
-    
-    # this did not solve the problem:
-    # sleep(5)
             
     parsed_page = Nokogiri::HTML(page.html)
     
