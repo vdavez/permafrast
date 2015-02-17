@@ -11,6 +11,7 @@ require 'sinatra/contrib/all'
 require 'redcarpet'
 require 'github/markup'
 require 'pry'
+require 'rack/ssl-enforcer'
 
 if settings.development?
   require 'dotenv'
@@ -42,6 +43,10 @@ end
 class App < Sinatra::Base
   register Sinatra::Contrib
   register Sinatra::ActiveRecordExtension
+  
+  if settings.production?
+    use Rack::SslEnforcer
+  end
 
   get '/' do
     file = 'readme.md'
