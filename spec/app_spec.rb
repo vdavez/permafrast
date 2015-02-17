@@ -54,7 +54,7 @@ describe 'The App', type: :feature do
     
     page = Nokogiri::HTML(last_response.body)
     # ensure Permafrast text is at the top of the page
-    expect(page.at_css('body > h1:nth-child(1)').text).to(eq('Permafrast'))
+    expect(page.at_css('body > div > h1:nth-child(1)').text).to(eq('Permafrast'))
   end
   
   it 'gets HTML' do

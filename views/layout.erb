@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <title>Permafrast -- <%= out.full_citation %></title>
+  <title>Permafrast -- <% if defined?(out) %><%= out.full_citation %><% end %></title>
   <style type="text/css">
     body { font-size:16px; }
     .wrapper { max-width: 600px; margin:0 auto; }
@@ -11,12 +11,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <h1>Permafrast</h1>
-  <a id="full_citation" href="<%= out.url %>"><%= out.full_citation %></a>
-  <br/>
-  <div id="fetched_page">
-  <%= out.fetched_page %>
-</div>
+  <%= yield %>
 </div>
 </body>
 </html>
