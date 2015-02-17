@@ -45,7 +45,7 @@ class App < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   
   if settings.production?
-    use Rack::SslEnforcer :https_port => ENV["PORT"]
+    # use Rack::SslEnforcer :https_port => ENV["PORT"]
   end
 
   get '/' do
