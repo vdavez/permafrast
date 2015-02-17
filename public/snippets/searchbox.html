@@ -1,0 +1,18 @@
+<input id="citationBar" class="searchBar">
+<button id="citationButton" type="submit">Lookup</button>
+<script>
+document.getElementById("citationButton").addEventListener("click", function (){
+	var doc = document.getElementById('citationBar');
+	var citations = Citation.find(doc.value).citations;
+	var cite = getCitation(citations);
+	
+	console.log(cite)
+})
+
+function getCitation (citations) {
+	if (citations.length >= 1 && citations[0].type == "reporter") {
+		return citations[0].reporter;
+	}
+	return null;
+}
+</script>
