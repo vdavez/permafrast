@@ -5,7 +5,7 @@ rvm:
 
 script:
   - RACK_ENV=test bundle exec rake db:test:prepare
-  - RACK_ENV=test bundle exec rspec spec
+  - RACK_ENV=test bundle exec xvfb-run rspec
 
 deploy:
   provider: heroku
