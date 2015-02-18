@@ -26,19 +26,12 @@ end
   end
 end
 
-configure :production do
-  host = ENV['HOST'] || 'permafrast.herokuapp.com'
-  
-  set :host, host
-  set :force_ssl, true
-end
-
-before(/.*/) do
-  if request.url.match(/.json$/)
-    request.accept.unshift('application/json')
-    request.path_info = request.path_info.gsub(/.json$/,'')
-  end
-end
+#configure :production do
+#  host = ENV['HOST'] || 'permafrast.herokuapp.com'
+ 
+#  set :host, host
+#  set :force_ssl, true
+#end
 
 class App < Sinatra::Base
   register Sinatra::Contrib
